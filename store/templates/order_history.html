@@ -1,0 +1,36 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block title %}Order Detail{% endblock title %}
+{% block body %}
+    <div class="container">
+        <h2 class="text-center">View Order</h2><hr>
+        <div style="overflow: auto;">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Sr No</th>
+                        <th scope="col">Product ID</th>
+                        <th scope="col">Order No</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Payment</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pro in bp %}
+                        <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{pro.prod.id}}</td>
+                                <td>{{pro.order_no}}</td>
+                                <td>{{pro.prod.product_name}}</td>
+                                <td>{{pro.prod.price}}</td>
+                                <td>{{pro.payment}}</td>
+                                <td>{{pro.status}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock body %}

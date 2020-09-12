@@ -1,0 +1,86 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block title %}Admin Home{% endblock title %}
+{% block style %}
+    .container1{
+        background-color: lightgrey;
+        border-radius: 8px;
+    }
+    h2{
+        padding: 10px;
+    }
+    .mydiv:hover{
+        transform: translateY(-10px);
+    }
+{% endblock style %}
+{% block body %}
+    <div class="container" style="margin-bottom: 10%;">
+        <div class="row" style="margin-top: 4%;">
+            <div class="col sm-2 text-center mt-2">
+                <a href="{% url 'admin_view_order' %}"><div class="container1">
+                    <h2 class="text-primary">{{bp}}</h2>
+                    <h4 class="text-center pb-2">Pending Booking</h4>
+                </div></a>
+            </div>
+            <div class="col sm-2 text-center mt-2">
+                <a href="{% url 'admin_view_order' %}"><div class="container1">
+                    <h2 class="text-primary">{{bc}}</h2>
+                    <h4 class="text-center pb-2">Confirmed Booking</h4>
+                </div></a>
+            </div>
+            <div class="col sm-2 text-center mt-2">
+                <a href="{% url 'admin_view_order' %}"><div class="container1">
+                    <h2 class="text-primary">{{cb}}</h2>
+                    <h4 class="text-center pb-2">Cancelled Booking</h4>
+                </div></a>
+            </div>
+            <div class="col sm-2 text-center mt-2">
+                <a href="{% url 'admin_view_order' %}"><div class="container1">
+                    <h2 class="text-primary">{{br}}</h2>
+                    <h4 class="text-center pb-2">Ready Booking</h4>
+                </div></a>
+            </div>
+            <div class="col sm-2 text-center mt-2">
+                <a href="{% url 'admin_view_order' %}"><div class="container1">
+                    <h2 class="text-primary">{{bo}}</h2>
+                    <h4 class="text-center pb-2">On Way Booking</h4>
+                </div></a>
+            </div>
+            <div class="col sm-2 text-center mt-2">
+                <a href="{% url 'admin_view_order' %}"><div class="container1">
+                    <h2 class="text-primary">{{bd}}</h2>
+                    <h4 class="text-center pb-2">Delivered Booking</h4>
+                </div></a>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 4%;">
+            <div class="col sm-2 text-center mt-2">
+                <a href="{% url 'admin_view_order' %}"><div class="container1">
+                    <h2 class="text-primary">{{ba}}</h2>
+                    <h4 class="text-center pb-2">Total Booking</h4>
+                </div></a>
+            </div>
+            <div class="col sm-2 text-center mt-2">
+                <a href="{% url 'admin_user' %}"><div class="container1">
+                    <h2 class="text-primary">{{up}}</h2>
+                    <h4 class="text-center pb-2">Total Customers</h4>
+                </div></a>
+            </div>
+            <div class="col sm-2 text-center mt-2">
+                <a href="{% url 'view_product' %}"><div class="container1">
+                    <h2 class="text-primary">{{ap}}</h2>
+                    <h4 class="text-center pb-2">Total Products</h4>
+                </div></a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+    <footer class="container mt-5 text-center">
+        <p style="font-size: 100%; color: red; font-weight: bold;">
+            Copyright &copy; <script>document.write(new Date().getFullYear());</script>
+            All Right Reserved | <span style="color: #006400">This Website is made with </span>by
+           <i>Shivam Gupta</i>
+        </p>
+    </footer>
+    </div>
+{% endblock body %}

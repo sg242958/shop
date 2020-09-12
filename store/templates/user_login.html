@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}User Login Form{% endblock title %}
+{% block body %}
+
+{% ifequal error "no" %}
+    <script>
+        alert("Logged In Successfully!");
+        window.location = ('{% url 'user_home' %}');
+    </script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+    <script>
+        alert("Invalid Login Credentials! Please Try Again!!");
+    </script>
+{% endifequal %}
+
+<script>
+    function validateForm() {
+  var x = document.forms["myForm"]["username"].value;
+  if (x == "") {
+    alert("Username must be filled out");
+    return false;
+  }
+  var y = document.forms["myForm"]["password"].value;
+  if(y == ""){
+  alert("Password must be filled out");
+  return false;
+    }
+   }
+</script>
+
+<div class="container mt-5" style="margin-bottom: 2%;">
+    <d class="row">
+        <div class="col-sm-5">
+            <h2 class="text-center" style="font-style: oblique; font-family: Serif;">New Customers</h2><hr>
+            <p>
+                By Creating an account with our website, You will be able to move through the notes uploading and downloading process and more...
+            </p>
+            <a href="{% url 'signup' %}" class="btn btn-danger text-white mb-5"> Create Account</a>
+        </div>
+        <br>
+        <div class="col-sm-7">
+            <h2 class="text-center" style="font-style: oblique; font-family: Serif;">Customer Login</h2><hr>
+           <form method="post" action="{% url 'user' %}" onsubmit="return validateForm()" id="myForm">{% csrf_token %}
+               <label style="color:black;"><b>Username</b></label>
+               <input type="text" class="form-control" placeholder="Enter Email Address" name="username" id="username"><br>
+               <label style="color:black;"><b>Password</b></label>
+               <input type="password" placeholder="Enter your Password" class="form-control" name="password" id="password"><br>
+               <input type="submit" class="btn btn-danger mt-2" value="LOGIN">
+           </form>
+        </div>
+    </div>
+</div>
+{% endblock body %}

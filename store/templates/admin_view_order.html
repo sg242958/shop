@@ -1,0 +1,125 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block title %}Admin View Order {% endblock title %}
+{% block body %}
+
+<div class="navbar-form navbar-left mt-2 mb-5">
+        <form class="form-inline pull-right" action="#" method="post">{% csrf_token %}
+        <input class="form-control mr-sm-2" style="width: 60%;" type="search" placeholder="Status or Order Number" aria-label="Search" name="data">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+{% if search %}
+<br><div class="container mt-5 mb-5">
+<div style="overflow: auto;">
+<table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Sr.No.</th>
+                        <th scope="col">Order Number</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Payment Type</th>
+                        <th scope="col">Date & Time</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in search %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{order.order_no}}</td>
+                            <td>{{order.prod.product_name}}</td>
+                            <td>{{order.prod.price}}</td>
+                            <td>{{order.name}}</td>
+                            <td>{{order.address}}</td>
+                            <td>{{order.payment}}</td>
+                            <td>{{order.datetimefield}}</td>
+                            <td>
+                                <div class="row">
+                                <form action="{% url 'admin_view_order1' order.id %}" method="post">{% csrf_token %}
+                                    <div class="col-sm-6">
+                                <select class="btn btn-primary" name="status" id="status">
+                                    <option value="{{order.status}}" disabled selected>{{order.status}}</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Cancelled">Cancelled</option>
+                                    <option value="Confirmed">Confirmed</option>
+                                    <option value="Ready">Ready</option>
+                                    <option value="On Way">On Way</option>
+                                    <option value="Delivered">Delivered</option>
+                                </select></div>
+                                    <div class="col-sm-6">
+                                 <button type="submit" class="btn btn-primary mt-2">Change</button>
+                                    </div>
+                                </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+        </table>
+</div>
+</div>
+{% endif %}
+{% if orders %}
+<div class="container mt-5" style="margin-bottom: 5%;">
+    <h2 style="font-size: 2em; font-style: oblique; font-family: Serif;">Order Product</h2><hr>
+    {% if ocount == 0 %}
+    <h2 class="text-center">No Record Found</h2>
+    {% else %}
+    <div style="overflow: auto;">
+    <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Sr.No.</th>
+                        <th scope="col">Order Number</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Payment Type</th>
+                        <th scope="col">Date & Time</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{order.order_no}}</td>
+                            <td>{{order.prod.product_name}}</td>
+                            <td>{{order.prod.price}}</td>
+                            <td>{{order.name}}</td>
+                            <td>{{order.address}}</td>
+                            <td>{{order.payment}}</td>
+                            <td>{{order.datetimefield}}</td>
+                            <td>
+                                <div class="row">
+                                <form action="{% url 'admin_view_order1' order.id %}" method="post">{% csrf_token %}
+                                    <div class="col-sm-6">
+                                <select class="btn btn-primary" name="status" id="status">
+                                    <option value="{{order.status}}" disabled selected>{{order.status}}</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Cancelled">Cancelled</option>
+                                    <option value="Confirmed">Confirmed</option>
+                                    <option value="Ready">Ready</option>
+                                    <option value="On Way">On Way</option>
+                                    <option value="Delivered">Delivered</option>
+                                </select></div>
+                                    <div class="col-sm-6">
+                                 <button type="submit" class="btn btn-primary mt-2">Change</button>
+                                    </div>
+                                </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+        </table>
+    </div>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock body %}
