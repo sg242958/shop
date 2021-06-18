@@ -25,7 +25,7 @@ SECRET_KEY = 'fes_a506c!if1zcz^wg+i1#1&@qi6v3)d=nw1@4!k#e$t#sojk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://bakeryshop805.herokuapp.com/']
 
 
 # Application definition
