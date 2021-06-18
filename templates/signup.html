@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}SignUp Form{% endblock title %}
+{% block body %}
+
+{% ifequal error "no" %}
+    <script>
+        alert("SignUp Successfully!");
+        window.location = ('{% url 'user' %}');
+    </script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+    <script>
+        alert("Invalid SignUp Credentials! Please Try Again!!");
+    </script>
+{% endifequal %}
+
+<script type="text/javascript">
+function validateForm() {
+
+var a=document.forms["myForm"]["username"].value;
+if (a=="")
+ {
+  alert("Username must be filled out");
+  return false;
+ }
+
+var b=document.forms["myForm"]["first"].value;
+if (b == "") {
+  alert("First name must be filled out");
+  return false;
+}
+
+var c=document.forms["myForm"]["last"].value;
+if (c == "") {
+  alert("Last name must be filled out");
+  return false;
+}
+
+var d=document.forms["myForm"]["contact"].value;
+if (d == "") {
+  alert("Contact Number must be filled out");
+  return false;
+}
+
+var e=document.forms["myForm"]["email"].value;
+if (e == "") {
+  alert("Email Address must be filled out");
+  return false;
+}
+
+var f=document.forms["myForm"]["password"].value;
+if (f == "") {
+  alert("Password must be filled out");
+  return false;
+}
+}
+</script>
+
+<div class="container mt-5" style="margin-bottom: 5%;">
+    <div class="row">
+        <div class="col-sm-5">
+            <h2 class="text-center" style="font-style: oblique; font-family: Serif;">Existing Customers</h2><hr>
+            <p>
+                By Creating an account with our website, You will be able to move through the notes uploading and downloading process and more...
+            </p>
+            <a href="{% url 'user' %}" class="btn btn-danger text-white mb-4"> LogIn</a>
+        </div>
+        <div class="col-sm-7">
+            <h2 class="text-center" style="font-style: oblique; font-family: Serif;">Customer Login</h2><hr>
+            <p>If you have not an account with us, Please Signup......</p>
+           <form method="post" action="{% url 'signup' %}" id="myForm" onsubmit="return validateForm()">{% csrf_token %}
+               <label style="color:black;"><b>Username</b></label>
+               <input type="text" class="form-control" placeholder="Enter Username" name="username" id="username"><br>
+               <label style="color:black;"><b>First Name</b></label>
+               <input type="text" class="form-control" placeholder="Enter First Name" name="first" id="first"><br>
+               <label style="color:black;"><b>Last Name</b></label>
+               <input type="text" class="form-control" placeholder="Enter Last Name" name="last" id="last"><br>
+               <label style="color:black;"><b>Contact</b></label>
+               <input type="text" class="form-control" placeholder="Enter Contact Number" name="contact" id="contact"><br>
+               <label style="color:black;"><b>Email Address</b></label>
+               <input type="email" class="form-control" placeholder="Enter Email Address" name="email" id="email"><br>
+               <label style="color:black;"><b>Password</b></label>
+               <input type="password" placeholder="Enter your Password" class="form-control" name="password" id="password"><br>
+               <input type="submit" class="btn btn-danger mt-2" value="SignUp">
+           </form>
+        </div>
+    </div>
+</div>
+{% endblock body %}

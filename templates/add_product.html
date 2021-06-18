@@ -1,0 +1,64 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block title %}Add Product{% endblock title %}
+{% block body %}
+<script>
+    function validate(){
+    var a = document.forms["myForm"]["product"].value;
+    if (a==""){
+        alert("Product Name must be filled out!!");
+        return false;
+    }
+    var b = document.forms["myForm"]["price"].value;
+    if (b==""){
+        alert("Price must be filled out!!");
+        return false;
+    }
+    var c = document.forms["myForm"]["description"].value;
+    if (c==""){
+        alert("Description Field must be filled out!!");
+        return false;
+    }
+    var d = document.forms["myForm"]["image"].value;
+    if (d==""){
+        alert("Image field must be filled out!!");
+        return false;
+    }
+    }
+</script>
+<form method="post" action="{% url 'add_product' %}" enctype="multipart/form-data" id="myForm" onsubmit="return validate()">{% csrf_token %}
+    <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+     <h2 class="text-center" style="font-style: oblique; font-family: Serif;"> Add Product </h2><hr>
+    <div class="form-group">
+        <label for="category">Category</label><br>
+        <select name="category" class="form-control" id="category">
+            <option value="Choose Category"  disabled="true" selected>Choose Category</option>
+            {% for cat in cats %}
+                <option value={{cat.id}}>{{ cat }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Product</label>
+        <input type="text" class="form-control" placeholder="Enter Product Name" name="product" id="product">
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <input type="text" class="form-control" placeholder="Enter Price" name="price" id="price">
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <input type="text" class="form-control" placeholder="Enter Product Description" name="description" id="description">
+    </div>
+    <div class="form-group">
+        <label>Choose Image</label>
+        <input type="file" class="form-control" name="image" id="image">
+    </div>
+    <button type="submit" class="btn btn-primary" onclick="myFunction()">Add Category</button>
+    </div>
+    <script>
+        function myFunction() {
+        alert("Are You sure?");}
+    </script>
+</form>
+{% endblock %}
